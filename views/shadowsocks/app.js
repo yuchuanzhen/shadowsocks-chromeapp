@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Sunny
+Copyright (c) 2016 Sunny
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,4 +21,11 @@ SOFTWARE.
 */
 
 
-angular.module('shadowsocks', ['ui.bootstrap']);
+angular.module('shadowsocks', ['ngMaterial'])
+// Suppress "history.pushState is not available in packaged apps."
+.decorator('$window', function($delegate) {
+  Object.defineProperty($delegate, 'history', {
+    get: function() { return null; }
+  });
+  return $delegate;
+});
